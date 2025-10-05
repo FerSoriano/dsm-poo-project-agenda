@@ -1,12 +1,15 @@
+import java.time.LocalDateTime;
+
 public class Main {
     public static void main(String[] args) {
-        Paciente paciente = new Paciente("Fernando", "3312168586", 'M');
-        System.out.println(paciente.getId());
+        Paciente paciente = new Paciente("Pepe", "3355118622", 'M');
 
-        Paciente paciente2 = new Paciente("Ramon", "3312168586", 'M');
-        System.out.println(paciente2.getId());
+        Cita cita = new Cita(paciente, LocalDateTime.now().plusHours(3), "Cita medica", 30);
 
-        Paciente paciente3 = new Paciente("Juan", "3312168586", 'M');
-        System.out.println(paciente3.getId());
+        if(cita.proximaCita() != null) {
+            System.out.println("Proxima cita: " + cita.proximaCita());
+        } else {
+            System.out.println("No hay citas registradas.");
+        }
     }
 }
