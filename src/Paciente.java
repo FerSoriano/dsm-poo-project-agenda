@@ -1,15 +1,15 @@
 public class Paciente {
     private static int totalPacientes = 0;
 
-    private String id;
+    private final String id;
     private String nombre;
     private String telefono;
     private char genero;
 
     public Paciente(String nombre, String telefono, char genero) {
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.genero = genero;
+        this.setNombre(nombre);
+        this.setTelefono(telefono);
+        this.setGenero(genero);
         this.id = "P" + String.format("%03d", ++totalPacientes);
     }
 
@@ -22,7 +22,11 @@ public class Paciente {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (!nombre.isEmpty()){
+            this.nombre = nombre;
+        } else {
+            System.out.println("Nombre invalido");
+        }
     }
 
     public String getTelefono() {
@@ -30,7 +34,11 @@ public class Paciente {
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        if(telefono.length() == 10) {
+            this.telefono = telefono;
+        } else {
+            System.out.println("El numero debe tener 10 digitos.");
+        }
     }
 
     public char getGenero() {
@@ -38,6 +46,20 @@ public class Paciente {
     }
 
     public void setGenero(char genero) {
-        this.genero = genero;
+        if( Character.toUpperCase(genero) == 'M' || Character.toUpperCase(genero) == 'F') {
+            this.genero = genero;
+        } else {
+            System.out.println("Genero incorrecto. Debe ser 'M' o 'F'");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", genero=" + genero +
+                '}';
     }
 }
