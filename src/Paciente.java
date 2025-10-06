@@ -7,10 +7,18 @@ public class Paciente {
     private char genero;
 
     public Paciente(String nombre, String telefono, char genero) {
-        this.setNombre(nombre);
-        this.setTelefono(telefono);
-        this.setGenero(genero);
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.genero = Character.toUpperCase(genero);
         this.id = "P" + String.format("%03d", ++totalPacientes);
+    }
+
+    // metodo estatico para crear al paciente con las validaciones.
+    public static Paciente crearPaciente(String nombre, String telefono, char genero) {
+        if (nombre == null || nombre.isEmpty()) return null;
+        if (telefono == null || telefono.length() != 10) return null;
+        if (Character.toUpperCase(genero) != 'M' && Character.toUpperCase(genero) != 'F') return null;
+        return new Paciente(nombre, telefono, genero);
     }
 
     public String getId() {
