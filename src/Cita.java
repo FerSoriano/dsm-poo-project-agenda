@@ -53,12 +53,4 @@ public class Cita {
     public LocalDateTime terminaEn() {
         return this.fechaHora.plusMinutes(this.duracionMinutos);
     }
-
-    public LocalDateTime proximaCita() {
-        if( LocalDateTime.now().isBefore(this.fechaHora) ) {
-            return this.fechaHora;
-        } else {
-            return null; // no hay proxima cita.
-        }
-    }
 }
