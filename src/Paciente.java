@@ -1,5 +1,12 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+
 public class Paciente {
     private static int totalPacientes = 0;
+    private static Set<String> telefonosPacientes = new HashSet<>();
+    private static ArrayList<Paciente> listaPacientes = new ArrayList<>();
 
     private final String id;
     private String nombre;
@@ -7,10 +14,16 @@ public class Paciente {
     private char genero;
 
     public Paciente(String nombre, String telefono, char genero) {
+        if (existePaciente(telefono)) {
+            throw new IllegalArgumentException("El paciente con este teléfono ya existe.");
+        }
+
         this.nombre = nombre;
         this.telefono = telefono;
         this.genero = Character.toUpperCase(genero);
         this.id = "P" + String.format("%03d", ++totalPacientes);
+
+        telefonosPacientes.add(telefono); // se agrega al set de telefonos.
     }
 
     // metodo estatico para crear al paciente con las validaciones.
@@ -18,7 +31,20 @@ public class Paciente {
         if (nombre == null || nombre.isEmpty()) return null;
         if (telefono == null || telefono.length() != 10) return null;
         if (Character.toUpperCase(genero) != 'M' && Character.toUpperCase(genero) != 'F') return null;
-        return new Paciente(nombre, telefono, genero);
+        Paciente paciente = new Paciente(nombre, telefono, genero);
+        listaPacientes.add(paciente); // se agrega nuevo paciente a la lista statica.
+        return  paciente;
+    }
+
+    private static boolean existePaciente(String telefono) {
+        return telefonosPacientes.contains(telefono);
+    }
+
+    public static void mostrarPacientes() {
+        System.out.println();
+        for (Paciente paciente : listaPacientes) {
+            System.out.println(paciente.toString());
+        }
     }
 
     public String getId() {
