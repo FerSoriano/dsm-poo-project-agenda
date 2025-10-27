@@ -1,11 +1,14 @@
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Cita {
     private Paciente paciente;
     private LocalDateTime fechaHora;
     private String motivo;
     private int duracionMinutos;
+    private double costoCita;
 
     public Cita(Paciente paciente, LocalDateTime fechaHora, String motivo, int duracionMinutos) {
         this.paciente = paciente;
@@ -24,6 +27,14 @@ public class Cita {
 
     public LocalDateTime getFechaHora() {
         return fechaHora;
+    }
+
+    public LocalDate getFecha() {
+        return fechaHora.toLocalDate();
+    }
+
+    public LocalTime getHora() {
+        return fechaHora.toLocalTime();
     }
 
     public void setFechaHora(LocalDateTime fechaHora) {
@@ -52,5 +63,14 @@ public class Cita {
 
     public LocalDateTime terminaEn() {
         return this.fechaHora.plusMinutes(this.duracionMinutos);
+    }
+
+    @Override
+    public String toString() {
+        return "Fecha: " + getFecha() + '\n' +
+                "Hora: " + getHora() + '\n' +
+                "Paciente: " + paciente.getNombre() + '\n' +
+                "Motivo: " + motivo + '\n' +
+                "Duracion (min): " + duracionMinutos + '\n';
     }
 }
