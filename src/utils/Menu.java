@@ -22,13 +22,19 @@ public class Menu {
         mostrarMensajeConsola("Menu Paciente", 20);
         System.out.println("1) Crear nuevo paciente");
         System.out.println("2) Ver pacientes");
-        System.out.println("3) Eliminar paciente"); // TODO. Implementar metodo elimnar paciente
+        System.out.println("3) Editar paciente"); // TODO. Implementar metodo editar paciente
         System.out.println("4) Regresar menu anterior");
         System.out.print("\n\tOpcion: ");
     }
 
     public void menuCitas() {
-        System.out.println("\n* Implementar menu citas... *\n"); // TODO: Implemenmtar menu citas
+        mostrarMensajeConsola("Menu Citas", 20);
+        System.out.println("1) Crear nueva cita");
+        System.out.println("2) Ver todas las citas");
+        System.out.println("3) Ver citas por Paciente");
+        System.out.println("4) Cancelar cita");
+        System.out.println("5) Regresar menu anterior");
+        System.out.print("\n\tOpcion: ");
     }
 
     public void menuAgenda() {
@@ -46,7 +52,7 @@ public class Menu {
     }
 
     public void mostrarMensajeError(String mensaje) {
-        System.out.println("\n* " + mensaje + "*\n");
+        System.out.println("\n* " + mensaje + " *\n");
     }
 
 }

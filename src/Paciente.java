@@ -47,6 +47,26 @@ public class Paciente {
         }
     }
 
+    public static Paciente getPacientePorId(String id) {
+        if (id == null || listaPacientes == null || listaPacientes.isEmpty()) {
+            return null;
+        }
+        for (Paciente paciente : listaPacientes) {
+            if (paciente.id.equals(id.toUpperCase())) return paciente;
+        }
+        return null;
+    }
+
+    public static Paciente getPacientePorTelefono(String telefono) {
+        if (telefono == null || listaPacientes == null || listaPacientes.isEmpty()) {
+            return null;
+        }
+        for (Paciente paciente : listaPacientes) {
+            if (paciente.telefono.equals(telefono)) return paciente;
+        }
+        return null;
+    }
+
     public String getId() {
         return id;
     }
